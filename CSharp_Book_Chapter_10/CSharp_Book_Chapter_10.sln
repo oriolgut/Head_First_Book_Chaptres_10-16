@@ -19,14 +19,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeehiveManagementSystemWA.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeehiveManagementSystemWA.WindowsPhone", "BeehiveManagementSystemWA\BeehiveManagementSystemWA.WindowsPhone\BeehiveManagementSystemWA.WindowsPhone.csproj", "{70B06CE6-EF63-428F-BE04-74AD8934F862}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SloppyJoes", "SloppyJoes", "{4022183F-7FCD-49B2-85EA-51F402597F38}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SloppyJoes.Shared", "SloppyJoes\SloppyJoes.Shared\SloppyJoes.Shared.shproj", "{4DE84EC2-55DD-49F1-AC11-D9EA3742B099}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SloppyJoes.Windows", "SloppyJoes\SloppyJoes.Windows\SloppyJoes.Windows.csproj", "{26137256-6CB6-406F-B5EB-8B0208CF0307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SloppyJoes.WindowsPhone", "SloppyJoes\SloppyJoes.WindowsPhone\SloppyJoes.WindowsPhone.csproj", "{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		GoFishGameWA\GoFishGameWA.Shared\GoFishGameWA.Shared.projitems*{04d588f0-ab1f-41b7-9765-6e7731c951f5}*SharedItemsImports = 13
+		SloppyJoes\SloppyJoes.Shared\SloppyJoes.Shared.projitems*{26137256-6cb6-406f-b5eb-8b0208cf0307}*SharedItemsImports = 4
+		SloppyJoes\SloppyJoes.Shared\SloppyJoes.Shared.projitems*{4de84ec2-55dd-49f1-ac11-d9ea3742b099}*SharedItemsImports = 13
 		GoFishGameWA\GoFishGameWA.Shared\GoFishGameWA.Shared.projitems*{5b506d23-b3f0-4f75-b889-9742cf47ded3}*SharedItemsImports = 4
 		BeehiveManagementSystemWA\BeehiveManagementSystemWA.Shared\BeehiveManagementSystemWA.Shared.projitems*{6a4bb8ce-24b0-4929-a060-dbdd4f34fbd5}*SharedItemsImports = 13
 		BeehiveManagementSystemWA\BeehiveManagementSystemWA.Shared\BeehiveManagementSystemWA.Shared.projitems*{70b06ce6-ef63-428f-be04-74ad8934f862}*SharedItemsImports = 4
 		BeehiveManagementSystemWA\BeehiveManagementSystemWA.Shared\BeehiveManagementSystemWA.Shared.projitems*{779e8641-9eee-4d7f-9081-94a15dd18ee8}*SharedItemsImports = 4
 		GoFishGameWA\GoFishGameWA.Shared\GoFishGameWA.Shared.projitems*{c1fb58ab-48f3-421a-acc2-db93f4219eec}*SharedItemsImports = 4
+		SloppyJoes\SloppyJoes.Shared\SloppyJoes.Shared.projitems*{de2114f4-a14c-4efb-9fc0-dc5f3ec7f117}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +146,54 @@ Global
 		{70B06CE6-EF63-428F-BE04-74AD8934F862}.Release|x86.ActiveCfg = Release|x86
 		{70B06CE6-EF63-428F-BE04-74AD8934F862}.Release|x86.Build.0 = Release|x86
 		{70B06CE6-EF63-428F-BE04-74AD8934F862}.Release|x86.Deploy.0 = Release|x86
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|ARM.ActiveCfg = Debug|ARM
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|ARM.Build.0 = Debug|ARM
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|ARM.Deploy.0 = Debug|ARM
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|x64.ActiveCfg = Debug|x64
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|x64.Build.0 = Debug|x64
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|x64.Deploy.0 = Debug|x64
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|x86.ActiveCfg = Debug|x86
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|x86.Build.0 = Debug|x86
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Debug|x86.Deploy.0 = Debug|x86
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|ARM.ActiveCfg = Release|ARM
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|ARM.Build.0 = Release|ARM
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|ARM.Deploy.0 = Release|ARM
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|x64.ActiveCfg = Release|x64
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|x64.Build.0 = Release|x64
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|x64.Deploy.0 = Release|x64
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|x86.ActiveCfg = Release|x86
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|x86.Build.0 = Release|x86
+		{26137256-6CB6-406F-B5EB-8B0208CF0307}.Release|x86.Deploy.0 = Release|x86
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|ARM.ActiveCfg = Debug|ARM
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|ARM.Build.0 = Debug|ARM
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|ARM.Deploy.0 = Debug|ARM
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|x64.Build.0 = Debug|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|x86.ActiveCfg = Debug|x86
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|x86.Build.0 = Debug|x86
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Debug|x86.Deploy.0 = Debug|x86
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|ARM.ActiveCfg = Release|ARM
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|ARM.Build.0 = Release|ARM
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|ARM.Deploy.0 = Release|ARM
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|x64.ActiveCfg = Release|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|x64.Build.0 = Release|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|x64.Deploy.0 = Release|Any CPU
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|x86.ActiveCfg = Release|x86
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|x86.Build.0 = Release|x86
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,5 +205,8 @@ Global
 		{6A4BB8CE-24B0-4929-A060-DBDD4F34FBD5} = {443DF84E-1DE4-4F6D-9041-65992BB6748E}
 		{779E8641-9EEE-4D7F-9081-94A15DD18EE8} = {443DF84E-1DE4-4F6D-9041-65992BB6748E}
 		{70B06CE6-EF63-428F-BE04-74AD8934F862} = {443DF84E-1DE4-4F6D-9041-65992BB6748E}
+		{4DE84EC2-55DD-49F1-AC11-D9EA3742B099} = {4022183F-7FCD-49B2-85EA-51F402597F38}
+		{26137256-6CB6-406F-B5EB-8B0208CF0307} = {4022183F-7FCD-49B2-85EA-51F402597F38}
+		{DE2114F4-A14C-4EFB-9FC0-DC5F3EC7F117} = {4022183F-7FCD-49B2-85EA-51F402597F38}
 	EndGlobalSection
 EndGlobal
