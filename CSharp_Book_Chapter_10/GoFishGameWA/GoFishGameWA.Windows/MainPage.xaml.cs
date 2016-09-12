@@ -103,9 +103,25 @@ namespace GoFishGameWA
 
         #endregion
 
-        private void playerName_TextChanged(object sender, TextChangedEventArgs e)
+        private void startTheGame_Click(object sender, RoutedEventArgs e)
         {
+            _game.StartGame();
+        }
 
+        private void askForACard_Click(object sender, RoutedEventArgs e)
+        {
+            if(cards.SelectedIndex >= 0)
+            {
+                _game.PlayOneRound(cards.SelectedIndex);
+            }
+        }
+        
+        private void cards_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (cards.SelectedIndex >= 0)
+            {
+                _game.PlayOneRound(cards.SelectedIndex);
+            }
         }
     }
 }
