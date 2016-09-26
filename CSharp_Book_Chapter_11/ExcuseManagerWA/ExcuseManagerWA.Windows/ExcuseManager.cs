@@ -42,13 +42,14 @@ namespace ExcuseManagerWA
             if(_excuseFile != null)
             {
                 BasicProperties basicProperties = await _excuseFile.GetBasicPropertiesAsync();
-                FileDate = basicProperties.DateModified.ToString();
+                FileDate = basicProperties.DateModified.ToString();             
             }
             else
             {
-                FileDate = "(no file loaded)";
-                OnPropertyChanged(nameof(FileDate));
+                FileDate = "(no file loaded)"; 
             }
+
+            OnPropertyChanged(nameof(FileDate));
         }
         public async Task<bool> ChooseNewFolderAsync()
         {
@@ -110,29 +111,13 @@ namespace ExcuseManagerWA
 
         public async Task ReadExcuseAsync()
         {
-            //oriols suggestion without serializer 
-            using (StreamReader reader = new StreamReader(await _excuseFile.OpenStreamForReadAsync()))
-            {
-                string[] nextLine = new string[10];
-                for(int i = 0; reader.ReadLineAsync() != null; i++)
-                {
-                    nextLine[i] = await reader.ReadLineAsync();
-                }
-                CurrentExcuse.Description = nextLine[0];
-                CurrentExcuse.Results = nextLine[1];
-                CurrentExcuse.LastUsed = Convert.ToDateTime(nextLine[2]);
-            }
-
-            //or solution of the book:
-            /*
             using (IRandomAccessStream stream = await _excuseFile.OpenAsync(FileAccessMode.Read))
             using (Stream inputStream = stream.AsStreamForRead())
             {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(Excuse));
                 CurrentExcuse = serializer.ReadObject(inputStream) as Excuse;
             }
-            */
-        
+
             await new MessageDialog($"Excuse read from {_excuseFile.Name}").ShowAsync();
             OnPropertyChanged(nameof(CurrentExcuse));
             await UpDateFileAsync();
@@ -142,13 +127,14 @@ namespace ExcuseManagerWA
         {
             if(_excuseFile != null && CurrentExcuse != null)
             {
-                using (StreamWriter writer = new StreamWriter(await _excuseFile.OpenStreamForWriteAsync()))
+                using (IRandomAccessStream stream = await _excuseFile.OpenAsync(FileAccessMode.ReadWrite))
+                using(Stream outputStream = stream.AsStreamForWrite())
                 {
-                    await writer.WriteLineAsync(CurrentExcuse.Description);
-                    await writer.WriteLineAsync(CurrentExcuse.Results);
-                    await writer.WriteLineAsync(CurrentExcuse.LastUsed.ToString());
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(Excuse));
+                    serializer.WriteObject(outputStream, CurrentExcuse);
                 }
-                await new MessageDialog($"Excuse read from {_excuseFile.Name}").ShowAsync();
+
+                await new MessageDialog($"Excuse written to {_excuseFile.Name}").ShowAsync();
                 await UpDateFileAsync();
             }
         }
@@ -164,7 +150,6 @@ namespace ExcuseManagerWA
                     CommitButtonText = "Save File Excuse"
                 };
                 picker.FileTypeChoices.Add("XMl File", new List<string>() { ".xml" });
-                picker.FileTypeChoices.Add("All Types (*.*)", new List<string>() { "" });
                 IStorageFile newExcuseFile = await picker.PickSaveFileAsync();
                 if (newExcuseFile != null)
                 {
