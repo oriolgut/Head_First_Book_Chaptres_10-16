@@ -46,21 +46,56 @@ namespace JimmyComics
                 case "Join purchases with prices":
                     JoinPurchasesWithPrices();
                     break;
+                case "All comics in the collection":
+                    AllComics();
+                    break;
             }
         }
-
 
         public static IEnumerable<Comic> BuildCatalog()
         {
             return new List<Comic> {
-                new Comic { Name = "Johnny America vs. the Pinko", Issue = 6 },
-                new Comic { Name = "Rock and Roll (limited edition)", Issue = 19 },
-                new Comic { Name = "Woman's Work", Issue = 36 },
-                new Comic { Name = "Hippie Madness (misprinted)", Issue = 57 },
-                new Comic { Name = "Revenge of the New Wave Freak (damaged)", Issue = 68 },
-                new Comic { Name = "Black Monday", Issue = 74 },
-                new Comic { Name = "Tribal Tattoo Madness", Issue = 83 },
-                new Comic { Name = "The Death of an Object", Issue = 97 },
+                 new Comic { Name = "Johnny America vs. the Pinko", Issue = 6, Year = 1949, CoverPrice = "10 cents",
+                     MainVillain = "The Pinko", Cover = "Assets/Captain Amazing Issue 6 cover.png",
+                     Synopsis = "Captain Amazing must save America from Communists as The Pinko and his"
+                         + " communist henchmen threaten to take over Fort Knox and steal all of the nation's gold." },
+
+                 new Comic { Name = "Rock and Roll (limited edition)", Issue = 19, Year = 1957, CoverPrice = "10 cents",
+                     MainVillain = "Doctor Vortran", Cover = "Assets/Captain Amazing Issue 19 cover.png",
+                     Synopsis = "Doctor Vortran wreaks havoc with the nation's youth with his radio wave device that"
+                         + " uses the latest dance craze to send rock and roll fans into a mind-control trance." },
+
+                new Comic { Name = "Woman's Work", Issue = 36, Year = 1968, CoverPrice = "12 cents",
+                    MainVillain = "Hysterianna", Cover = "Assets/Captain Amazing Issue 36 cover.png",
+                    Synopsis = "The Captain faces his first female foe, Hysterianna, whose incredible telepathic"
+                        + " and telekinetic abilities have allowed her to raise an all-girl army that"
+                                + " even the Captain has trouble resisting." },
+
+                new Comic { Name = "Hippie Madness (misprinted)", Issue = 57, Year = 1973, CoverPrice = "20 cents",
+                    MainVillain = "The Mayor", Cover = "Assets/Captain Amazing Issue 57 cover.png",
+                    Synopsis = "A zombie apocalypse threatens Objectville when The Mayor rigs the election by"
+                        + " introducing his zombification agent into the city's cigarette supply." },
+
+                new Comic { Name = "Revenge of the New Wave Freak (damaged)", Issue = 68, Year = 1984,
+                    CoverPrice = "75 cents", MainVillain = "The Swindler",
+                    Cover = "Assets/Captain Amazing Issue 68 cover.png",
+                    Synopsis = "A tainted batch of eye makeup turns Dr. Alvin Mudd into the Captain's new nemesis,"
+                        + " in The Swindler's first appearance in a Captain Amazing comic." },
+
+                new Comic { Name = "Black Monday", Issue = 74, Year = 1986, CoverPrice = "75 cents",
+                    MainVillain = "The Mayor", Cover = "Assets/Captain Amazing Issue 74 cover.png",
+                    Synopsis = "The Mayor returns to throw Objectville into a financial crisis by directing his"
+                        + " zombie creation powers to the floor of the Objectville Stock Exchange." },
+
+                new Comic { Name = "Tribal Tattoo Madness", Issue = 83, Year = 1996, CoverPrice = "Two bucks",
+                    MainVillain = "Mokey Man", Cover = "Assets/Captain Amazing Issue 83 cover.png",
+                    Synopsis = "Monkey Man escapes from his island prison and wreaks havoc with his circus sideshow"
+                        + " of tattooed henchmen that and their deadly grunge ray." },
+
+                new Comic { Name = "The Death of an Object", Issue = 97, Year = 2013, CoverPrice = "Four bucks",
+                    MainVillain = "The Swindler", Cover = "Assets/Captain Amazing Issue 97 cover.png",
+                    Synopsis = "The Swindler's clone army attacks Objectville in a ruse to trap and kill the "
+                        + " Captain. Can the scientists of Objectville find a way to bring him back?" },
             };
         }
 
@@ -133,7 +168,8 @@ namespace JimmyComics
                 new ComicQuery("Join purchases with prices", "Let's see if Jimmy drives a hard bargain",
                                "This query creates a list of Purchase classes thath contain Jimmy's purchases and " 
                              + "compares them with the prices he found on Greg's List.", 
-                               "Assets/captain_amazing_250x250.jpg")
+                               "Assets/captain_amazing_250x250.jpg"),
+                new ComicQuery("All comics in the collection", "Get all of the comics in the collection", "This query returns all of the comics", "Assets/captain_amazing_zoom_250x250.jpg"),
             };
         }
         private void LinqIsVersatile1()
@@ -195,6 +231,7 @@ namespace JimmyComics
                 ImagePath = $"Assets/{imagePath}"
             };
         }
+
         private void JoinPurchasesWithPrices()
         {
             IEnumerable<Comic> comics = BuildCatalog();
@@ -243,6 +280,21 @@ namespace JimmyComics
                 CurrentQueryResults.Add(CreateAnonymousListViewItem(message, "captain_amazing_250x250.jpg"));
             }
         }
- 
+
+        private void AllComics()
+        {
+            foreach(Comic comic in BuildCatalog())
+            {
+                var result = new
+                {
+                    ImagePath = "Assets/captain_amazing_zoom_250x250.jpg",
+                    Title = comic.Name,
+                    Subtitle = $"Issue #{comic.Issue}",
+                    Description = $"The Captain versus {comic.MainVillain}",
+                    Comic = comic
+                };
+                CurrentQueryResults.Add(result);
+            }
+        }
     }
 }

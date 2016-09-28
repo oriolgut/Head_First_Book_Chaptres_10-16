@@ -21,7 +21,7 @@ namespace JimmyComics
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class QueryDetailZoom : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -45,7 +45,7 @@ namespace JimmyComics
         }
 
 
-        public MainPage()
+        public QueryDetailZoom()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -93,6 +93,12 @@ namespace JimmyComics
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            ComicQuery comicQuery = e.Parameter as ComicQuery;
+            if (comicQuery != null)
+            {
+                comicQueryManager.UpdateQueryResults(comicQuery);
+                pageTitle.Text = comicQueryManager.Title;
+            }
             navigationHelper.OnNavigatedTo(e);
         }
 
@@ -102,21 +108,5 @@ namespace JimmyComics
         }
 
         #endregion
-
-        private void OnListViewItemClick(object sender, ItemClickEventArgs e)
-        {
-            ComicQuery query = e.ClickedItem as ComicQuery;
-            if (query != null)
-            {
-                if (query.Title == "All comics in the collection")
-                {
-                    this.Frame.Navigate(typeof(QueryDetailZoom), query);
-                }
-                else
-                {
-                    this.Frame.Navigate(typeof(QueryDetail), query);
-                }
-            }
-        }
     }
 }
