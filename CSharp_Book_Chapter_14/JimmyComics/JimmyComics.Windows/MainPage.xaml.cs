@@ -98,6 +98,7 @@ namespace JimmyComics
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            SuspensionManager.CurrentQuery = null;
             navigationHelper.OnNavigatedFrom(e);
         }
 
@@ -108,6 +109,7 @@ namespace JimmyComics
             ComicQuery query = e.ClickedItem as ComicQuery;
             if (query != null)
             {
+                SuspensionManager.CurrentQuery = query.Title;
                 if (query.Title == "All comics in the collection")
                 {
                     this.Frame.Navigate(typeof(QueryDetailZoom), query);

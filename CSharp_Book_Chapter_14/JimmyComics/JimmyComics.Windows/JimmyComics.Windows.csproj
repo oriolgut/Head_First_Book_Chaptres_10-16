@@ -138,6 +138,7 @@
     <Compile Include="QueryDetailZoom.xaml.cs">
       <DependentUpon>QueryDetailZoom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SuspensionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

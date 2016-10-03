@@ -90,6 +90,8 @@ namespace JimmyComicsSplitApp
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 rootFrame.Navigate(typeof(ItemsPage), e.Arguments);
+                
+
             }
             // Ensure the current window is active
             Window.Current.Activate();
