@@ -113,6 +113,8 @@
     <Compile Include="Ball.cs" />
     <Compile Include="BallEventArgs.cs" />
     <Compile Include="BaseballSimulator.cs" />
+    <Compile Include="Bat.cs" />
+    <Compile Include="BatCallback.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
