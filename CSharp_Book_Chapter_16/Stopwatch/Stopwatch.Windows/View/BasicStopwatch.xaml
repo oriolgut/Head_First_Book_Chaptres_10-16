@@ -12,25 +12,26 @@
 
     <UserControl.Resources>
         <viewmodel:StopwatchViewModel x:Name="viewModel"/>
+        <viewmodel:TimeNumberFormatConverter x:Name="timeNumberFormatConverter"/>
     </UserControl.Resources>
 
     <Grid DataContext="{StaticResource ResourceKey=viewModel}">
         <StackPanel>
             <TextBlock>
                 <Run>Elapsed time: </Run>
-                <Run Text="{Binding Hours}"/>
+                <Run Text="{Binding Hours, Converter={StaticResource timeNumberFormatConverter}}"/>
                 <Run>:</Run>
-                <Run Text="{Binding Minutes, ConverterParameter=d2}"/>
+                <Run Text="{Binding Minutes, Converter={StaticResource timeNumberFormatConverter}, ConverterParameter=d2}"/>
                 <Run>:</Run>
-                <Run Text="{Binding Seconds}"/>
+                <Run Text="{Binding Seconds, Converter={StaticResource timeNumberFormatConverter}}"/>
             </TextBlock>
             <TextBlock>
                 <Run>Lap time: </Run>
-                <Run Text="{Binding LapHours}"/>
+                <Run Text="{Binding LapHours, Converter={StaticResource timeNumberFormatConverter}}"/>
                 <Run>:</Run>
-                <Run Text="{Binding LapMinutes, ConverterParameter=d2}"/>
+                <Run Text="{Binding LapMinutes, Converter={StaticResource timeNumberFormatConverter}, ConverterParameter=d2}"/>
                 <Run>:</Run>
-                <Run Text="{Binding LapSeconds}"/>
+                <Run Text="{Binding LapSeconds, Converter={StaticResource timeNumberFormatConverter}}"/>
             </TextBlock>
             <StackPanel Orientation="Horizontal">
                 <Button IsEnabled="{Binding Running}" Click="StartButton_Click">Start</Button>

@@ -125,6 +125,7 @@
     <Compile Include="Model\StopwatchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\StopwatchViewModel.cs" />
+    <Compile Include="ViewModel\TimeNumberFormatConverter.cs" />
     <Compile Include="View\BasicStopwatch.xaml.cs">
       <DependentUpon>BasicStopwatch.xaml</DependentUpon>
     </Compile>

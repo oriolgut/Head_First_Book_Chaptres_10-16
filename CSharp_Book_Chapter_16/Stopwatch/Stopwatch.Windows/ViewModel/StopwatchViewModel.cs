@@ -123,7 +123,7 @@ namespace Stopwatch.ViewModel
         {
             bool running = Running;
             _stopwatchModel.Reset();
-            if (!running)
+            if (running)
             {
                 _stopwatchModel.Start();
             }
