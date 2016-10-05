@@ -13,33 +13,43 @@
     <UserControl.Resources>
         <viewmodel:StopwatchViewModel x:Name="viewModel"/>
         <viewmodel:TimeNumberFormatConverter x:Name="timeNumberFormatConverter"/>
+        <viewmodel:BooleanVisibilityConverter x:Key="visibilityConverter"/>
+        <viewmodel:BooleanNotConverter x:Key="notConverter"/>
     </UserControl.Resources>
 
     <Grid DataContext="{StaticResource ResourceKey=viewModel}">
         <StackPanel>
             <TextBlock>
                 <Run>Elapsed time: </Run>
-                <Run Text="{Binding Hours, Converter={StaticResource timeNumberFormatConverter}}"/>
+                <Run Text="{Binding Hours,
+                    Converter={StaticResource timeNumberFormatConverter}}"/>
                 <Run>:</Run>
-                <Run Text="{Binding Minutes, Converter={StaticResource timeNumberFormatConverter}, ConverterParameter=d2}"/>
+                <Run Text="{Binding Minutes,
+                    Converter={StaticResource timeNumberFormatConverter}, ConverterParameter=d2}"/>
                 <Run>:</Run>
-                <Run Text="{Binding Seconds, Converter={StaticResource timeNumberFormatConverter}}"/>
+                <Run Text="{Binding Seconds,
+                    Converter={StaticResource timeNumberFormatConverter}}"/>
             </TextBlock>
             <TextBlock>
                 <Run>Lap time: </Run>
-                <Run Text="{Binding LapHours, Converter={StaticResource timeNumberFormatConverter}}"/>
+                <Run Text="{Binding LapHours,
+                    Converter={StaticResource timeNumberFormatConverter}}"/>
                 <Run>:</Run>
-                <Run Text="{Binding LapMinutes, Converter={StaticResource timeNumberFormatConverter}, ConverterParameter=d2}"/>
+                <Run Text="{Binding LapMinutes,
+                    Converter={StaticResource timeNumberFormatConverter}, ConverterParameter=d2}"/>
                 <Run>:</Run>
-                <Run Text="{Binding LapSeconds, Converter={StaticResource timeNumberFormatConverter}}"/>
+                <Run Text="{Binding LapSeconds,
+                    Converter={StaticResource timeNumberFormatConverter}}"/>
             </TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button IsEnabled="{Binding Running}" Click="StartButton_Click">Start</Button>
+                <Button IsEnabled="{Binding Running, Converter={StaticResource notConverter}}"
+                    Click="StartButton_Click">Start</Button>
                 <Button IsEnabled="{Binding Running}" Click="StopButton_Click">Stop</Button>
                 <Button Click="ResetButton_Click">Reset</Button>
                 <Button IsEnabled="{Binding Running}" Click="LapButton_Click">Lap</Button>
             </StackPanel>
-            <TextBlock Text="Stopwatch is running" Visibility="{Binding Running}"/>
+            <TextBlock Text="Stopwatch is running"
+                Visibility="{Binding Running, Converter={StaticResource visibilityConverter}}"/>
         </StackPanel>
     </Grid>
 </UserControl>
