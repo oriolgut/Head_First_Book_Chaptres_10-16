@@ -13,17 +13,20 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Popups;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace JimmyComics
 {
+   
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
+        static bool aboutCommandAdded = false;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -51,6 +54,24 @@ namespace JimmyComics
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+            if (!aboutCommandAdded)
+            {
+                SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
+                aboutCommandAdded = true;
+            }
+        }
+
+        private void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            UICommandInvokedHandler invokedHandler = new UICommandInvokedHandler(AboutInvokeHandler);
+            SettingsCommand aboutCommand = new SettingsCommand("About", "About Jimmy's Comics", invokedHandler);
+            args.Request.ApplicationCommands.Add(aboutCommand);
+        }
+
+        async void AboutInvokeHandler(IUICommand command)
+        {
+            await new MessageDialog("An app to help Jimmy manage his comic collection", "Jimmy's Comics").ShowAsync();
         }
 
         /// <summary>
