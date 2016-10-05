@@ -13,10 +13,16 @@ namespace Stopwatch.ViewModel
     class StopwatchViewModel : INotifyPropertyChanged
     {
         private StopwatchModel _stopwatchModel = new StopwatchModel();
-
         private DispatcherTimer _timer = new DispatcherTimer();
 
-        public bool Running { get { return _stopwatchModel.Running; } }
+        private int _lastHours;
+        private int _lastMinutes;
+        private decimal _lastSeconds;
+        private bool _lastRunning;
+
+        private int _lastLapHours;
+        private int _lastLapMinutes;
+        private decimal _lastLapSeconds;
 
         public StopwatchViewModel()
         {
@@ -26,6 +32,76 @@ namespace Stopwatch.ViewModel
             Start();
 
             _stopwatchModel.LapTimeUpdated += LapTimeUpdatedEventHandler;
+        }
+
+        public bool Running
+        {
+            get
+            {
+                return _stopwatchModel.Running;
+            }
+        }
+
+        public int Hours
+        {
+            get
+            {
+                return _stopwatchModel.Elapsed.HasValue ? _stopwatchModel.Elapsed.Value.Hours : 0;
+            }
+        }
+
+        public int Minutes
+        {
+            get
+            {
+                return _stopwatchModel.Elapsed.HasValue ? _stopwatchModel.Elapsed.Value.Minutes : 0;
+            }
+        }
+
+        public decimal Seconds
+        {
+            get
+            {
+                if (_stopwatchModel.Elapsed.HasValue)
+                {
+                    return _stopwatchModel.Elapsed.Value.Seconds + (_stopwatchModel.Elapsed.Value.Milliseconds * .001M);
+                }
+                else
+                {
+                    return 0.0M;
+                }   
+            }
+        }
+
+        public int LapHours
+        {
+            get
+            {
+                return _stopwatchModel.LapTime.HasValue ? _stopwatchModel.LapTime.Value.Hours : 0;
+            }
+        }
+
+        public int LapMinutes
+        {
+            get
+            {
+                return _stopwatchModel.LapTime.HasValue ? _stopwatchModel.LapTime.Value.Minutes : 0;
+            }
+        }
+
+        public decimal LapSeconds
+        {
+            get
+            {
+                if (_stopwatchModel.LapTime.HasValue)
+                {
+                    return _stopwatchModel.LapTime.Value.Seconds + (_stopwatchModel.LapTime.Value.Milliseconds * .001M);
+                }
+                else
+                {
+                    return 0.0M;
+                }
+            }
         }
 
         public void Start()
@@ -47,115 +123,68 @@ namespace Stopwatch.ViewModel
         {
             bool running = Running;
             _stopwatchModel.Reset();
-            if (running)
+            if (!running)
+            {
                 _stopwatchModel.Start();
-            OnPropertyChanged("LapHours");
-            OnPropertyChanged("LapMinutes");
-            OnPropertyChanged("LapSeconds");
+            }
+            OnPropertyChanged(nameof(LapHours));
+            OnPropertyChanged(nameof(LapMinutes));
+            OnPropertyChanged(nameof(LapSeconds));
         }
 
-        int _lastHours;
-        int _lastMinutes;
-        decimal _lastSeconds;
-        bool _lastRunning;
-        void TimerTick(object sender, object e)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void TimerTick(object sender, object e)
         {
             if (_lastRunning != Running)
             {
                 _lastRunning = Running;
-                OnPropertyChanged("Running");
+                OnPropertyChanged(nameof(Running));
             }
+
             if (_lastHours != Hours)
             {
                 _lastHours = Hours;
-                OnPropertyChanged("Hours");
+                OnPropertyChanged(nameof(Hours));
             }
+
             if (_lastMinutes != Minutes)
             {
                 _lastMinutes = Minutes;
-                OnPropertyChanged("Minutes");
+                OnPropertyChanged(nameof(Minutes));
             }
+
             if (_lastSeconds != Seconds)
             {
                 _lastSeconds = Seconds;
-                OnPropertyChanged("Seconds");
+                OnPropertyChanged(nameof(Seconds));
             }
         }
 
-        public int Hours
-        {
-            get { return _stopwatchModel.Elapsed.HasValue ? _stopwatchModel.Elapsed.Value.Hours : 0; }
-        }
-
-        public int Minutes
-        {
-            get { return _stopwatchModel.Elapsed.HasValue ? _stopwatchModel.Elapsed.Value.Minutes : 0; }
-        }
-
-        public decimal Seconds
-        {
-            get
-            {
-                if (_stopwatchModel.Elapsed.HasValue)
-                {
-                    return (decimal)_stopwatchModel.Elapsed.Value.Seconds
-                        + (_stopwatchModel.Elapsed.Value.Milliseconds * .001M);
-                }
-                else
-                    return 0.0M;
-            }
-        }
-
-        public int LapHours
-        {
-            get { return _stopwatchModel.LapTime.HasValue ? _stopwatchModel.LapTime.Value.Hours : 0; }
-        }
-
-        public int LapMinutes
-        {
-            get { return _stopwatchModel.LapTime.HasValue ? _stopwatchModel.LapTime.Value.Minutes : 0; }
-        }
-
-        public decimal LapSeconds
-        {
-            get
-            {
-                if (_stopwatchModel.LapTime.HasValue)
-                {
-                    return (decimal)_stopwatchModel.LapTime.Value.Seconds
-                        + (_stopwatchModel.LapTime.Value.Milliseconds * .001M);
-                }
-                else
-                    return 0.0M;
-            }
-        }
-
-        int _lastLapHours;
-        int _lastLapMinutes;
-        decimal _lastLapSeconds;
         private void LapTimeUpdatedEventHandler(object sender, LapEventArgs e)
         {
             if (_lastLapHours != LapHours)
             {
                 _lastLapHours = LapHours;
-                OnPropertyChanged("LapHours");
+                OnPropertyChanged(nameof(LapHours));
             }
+
             if (_lastLapMinutes != LapMinutes)
             {
                 _lastLapMinutes = LapMinutes;
-                OnPropertyChanged("LapMinutes");
+                OnPropertyChanged(nameof(LapMinutes));
             }
+
             if (_lastLapSeconds != LapSeconds)
             {
                 _lastLapSeconds = LapSeconds;
-                OnPropertyChanged("LapSeconds");
+                OnPropertyChanged(nameof(LapSeconds));
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

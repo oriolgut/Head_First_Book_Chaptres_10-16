@@ -18,7 +18,10 @@ namespace Stopwatch.Model
 
         public bool Running
         {
-            get { return _started.HasValue; }
+            get
+            {
+                return _started.HasValue;
+            }
         }
 
         public TimeSpan? Elapsed

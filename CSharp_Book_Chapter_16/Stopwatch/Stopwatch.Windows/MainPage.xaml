@@ -8,11 +8,12 @@
     xmlns:common="using:Stopwatch.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="using:Stopwatch.View"
     mc:Ignorable="d">
 
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">My Stopwatch</x:String>
     </Page.Resources>
 
     <!--
@@ -30,7 +31,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <view:BasicStopwatch Grid.Row="1" Margin="120,0"/>
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
