@@ -31,7 +31,11 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <view:BasicStopwatch Grid.Row="1" Margin="120,0"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="120,0">
+            <view:BasicStopwatch Margin="0,0,0,40"/>
+            <view:AnalogStopwatch/>
+        </StackPanel>
+        
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>

@@ -6,6 +6,7 @@
     <Style TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}" x:Key="StopwatchRunningTextBlockStyle">
         <Setter Property="FontStyle" Value="Italic"/>
     </Style>
+    
     <Style TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource ButtonBackgroundThemeBrush}" />
         <Setter Property="Foreground" Value="{ThemeResource ButtonForegroundThemeBrush}"/>
@@ -86,7 +87,8 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Margin="3">
+                                Margin="3"
+                                CornerRadius="15">
                             <ContentPresenter x:Name="ContentPresenter"
                                               Content="{TemplateBinding Content}"
                                               ContentTransitions="{TemplateBinding ContentTransitions}"
