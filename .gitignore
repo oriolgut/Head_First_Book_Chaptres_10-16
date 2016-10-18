@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/CSharp_Book_Chapter_16/StarryNight
