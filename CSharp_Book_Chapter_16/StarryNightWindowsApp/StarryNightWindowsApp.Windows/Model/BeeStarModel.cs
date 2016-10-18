@@ -74,7 +74,8 @@ namespace StarryNightWindowsApp.Model
             }
             else
             {
-                foreach (Bee bee in _bees.Keys)
+                List<Bee> bees = _bees.Keys.ToList();
+                foreach (Bee bee in bees)
                 {
                     MoveOnBee(bee);
                 }
